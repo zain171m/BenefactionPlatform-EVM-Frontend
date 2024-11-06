@@ -1,31 +1,13 @@
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
-// import { useReadContract } from "wagmi";
-// //import abi from "./abi/abi.json";
-// import { formatEther } from "viem";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  //const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  //const [Account, setAccount] = useState<UseAccountReturnType>(useAccount());
+
   const Account = useAccount();
-
-  //   const result = useReadContract({
-  //     abi,
-  //     address: "0xC6E864c9816FfD3fcc1C501ECCFB3c83EbD62be1",
-  //     functionName: "balanceOf",
-  //     args: [Account.address],
-  //     account: Account.address,
-  //   });
-
-  //   const balance = result.data
-  //     ? formatEther(BigInt(result.data.toString()))
-  //     : "0";
-
-  //const [balance, setbalance] = useState(weitoeth);
+  const navigate = useNavigate();
 
   return (
     <div className="py-5 bg-slate-950 flex flex-row justify-between align-middle flex-wrap px-4">
@@ -35,12 +17,11 @@ const Navbar = () => {
             fill="#ffffff"
             height="40px"
             viewBox="-102.4 -102.4 1228.80 1228.80"
-            t="1569683753031"
-            class="icon"
+            className="icon"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             p-id="14137"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
             stroke="#ffffff"
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0">
@@ -51,7 +32,7 @@ const Navbar = () => {
                 height="1228.80"
                 rx="184.32"
                 fill="#020617"
-                strokewidth="0"
+                strokeWidth="0"
               ></rect>
             </g>
             <g
@@ -130,9 +111,9 @@ const Navbar = () => {
 
         {Account.address ? (
           <button
-            // onClick={() => {
-            //   if (Account.address) navigate("create");
-            // }}
+            onClick={() => {
+              if (Account.address) navigate("create");
+            }}
             className="text-white bg-zinc-800 font-bold text-sm h-10 hover:bg-zinc-900 px-3 rounded-lg shadow-md "
           >
             Create New Funding Vault
@@ -153,7 +134,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-
-/* <div className=" font-bold rounded-lg bg-gray-900 text-[18px] text-[#3b88c3] p-2">
-          <p>Balance: 67 ASRA</p>
-        </div> */

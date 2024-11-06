@@ -12,6 +12,8 @@ import {
   arbitrum,
   base,
   sepolia,
+  polygonAmoy,
+  arbitrumSepolia,
 } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
@@ -23,7 +25,16 @@ import Details from "./Details";
 const config = getDefaultConfig({
   appName: "My RainbowKit App",
   projectId: "YOUR_PROJECT_ID",
-  chains: [mainnet, polygon, optimism, arbitrum, base, sepolia],
+  chains: [
+    mainnet,
+    polygon,
+    optimism,
+    arbitrum,
+    base,
+    sepolia,
+    polygonAmoy,
+    arbitrumSepolia,
+  ],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 
@@ -42,10 +53,9 @@ export default function App() {
             overlayBlur: "small",
           })}
         >
-          <div className="bg-slate-900">
+          <div className="bg-slate-900 min-h-screen">
             <Router>
               <Navbar />
-
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
