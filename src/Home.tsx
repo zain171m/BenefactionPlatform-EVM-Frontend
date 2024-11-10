@@ -55,7 +55,7 @@ const Home = () => {
         {!result.isFetched &&
           Array.from({ length: 3 }, (_, index) => (
             <div key={index}>
-              <div className="px-7 py-7 bg-slate-950 rounded-lg shadow-md text-white animate-pulse">
+              <div className="px-7 py-7 bg-slate-950 rounded-lg shadow-md text-white animate-pulse ">
                 <div className="h-6 bg-slate-800 rounded"></div>
                 <div className="h-2 mt-8 bg-slate-800 rounded"></div>
                 <div className="grid grid-cols-3 gap-4 mt-4">
@@ -73,7 +73,7 @@ const Home = () => {
 
         {vaults?.map((vault) => (
           <div key={vault.vaultAddress}>
-            <div className="px-7 py-7 bg-slate-950 rounded-lg shadow-md text-white">
+            <div className="px-7 py-7 bg-slate-950 rounded-lg shadow-md text-white ">
               <h1 className="text-2xl  font-bold ">{vault.title}</h1>
               <p className="text-sm py-4 ">{vault.description}</p>
               <div className="flex flex-row justify-between py-4">

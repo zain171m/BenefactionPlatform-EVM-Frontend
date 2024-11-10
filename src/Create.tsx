@@ -1,15 +1,16 @@
 //import abi from "./abi/abi.json";
-import { useWriteContract } from "wagmi";
+import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 //import { parseEther } from "viem";
 import { useForm, SubmitHandler } from "react-hook-form";
 import factoryabi from "./abi/factoryabi.json";
+import abi from "./abi/abi.json";
 import { arbitrumSepolia } from "viem/chains";
-
+import { parseEther } from "viem";
 type Inputs = {
   title: string;
   url: string;
   description: string;
-  pta: string;
+  pta: `0x${string}`;
   withdrawAddress: string;
   developerAddress: string;
   minEth: string;
@@ -29,17 +30,29 @@ const Create = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    //const timestamp = Math.floor(data.deadline.getTime() / 1000);
+    const deadline = new Date(data.deadline);
+    const timestamp = Math.floor(deadline.getTime() / 1000);
     try {
-      const tx = await writeContractAsync({
+      const tx1 = await writeContractAsync({
+        abi: abi,
+        address: data.pta,
+        functionName: "approve",
+        args: [
+          "0x3d927Cf8E568856e379FDAaaa131d16aCa652e6d",
+          parseEther(data.ptaAmount),
+        ],
+        chainId: arbitrumSepolia.id,
+      });
+      console.log("1st Transaction submitted:", tx1);
+      const tx2 = await writeContractAsync({
         abi: factoryabi,
-        address: "0x3d927Cf8E568856e379FDAaaa131d16aCa652e6",
+        address: "0x3d927Cf8E568856e379FDAaaa131d16aCa652e6d",
         functionName: "deployFundingVault",
         args: [
           data.pta,
-          data.ptaAmount,
-          data.minEth,
-          data.deadline,
+          parseEther(data.ptaAmount),
+          parseEther(data.minEth),
+          timestamp,
           data.rate,
           data.withdrawAddress,
           data.developerAddress,
@@ -50,7 +63,7 @@ const Create = () => {
         ],
         chainId: arbitrumSepolia.id,
       });
-      console.log("Transaction submitted:", tx);
+      console.log("2nd Transaction submitted:", tx2);
     } catch (error) {
       console.error("Transaction failed:", error);
     }
@@ -64,23 +77,8 @@ const Create = () => {
     // }
   };
   //console.log(watch("title")); // watch input value by passing the name of it
+
   return (
-    // <form
-    //   className="text-black flex-row gap-3"
-    //   onSubmit={handleSubmit(onSubmit)}
-    // >
-    //   {/* register your input into the hook by invoking the "register" function */}
-    //   <input defaultValue="test" {...register("example")} />
-
-    //   {/* include validation with required or other standard HTML validation rules */}
-    //   <input {...register("exampleRequired", { required: true })} />
-    //   {/* errors will return when field validation fails  */}
-    //   {errors.exampleRequired && (
-    //     <span className="text-white">This field is required</span>
-    //   )}
-
-    //   <input type="submit" />
-    // </form>
     <div className="mx-auto max-w-7xl p-5">
       <div className="py-3 flex flex-col gap-2">
         <h1 className="text-2xl text-white">Create new Funding Vault</h1>
@@ -260,7 +258,6 @@ const Create = () => {
             </label>
             <input
               id="minEth"
-              type="number"
               className="bg-transparent p-2 text-sm w-full outline-none border border-slate-600 rounded-md"
               {...register("minEth", { required: true })}
             />
