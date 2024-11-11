@@ -43,6 +43,8 @@ const Create = () => {
         ],
         chainId: arbitrumSepolia.id,
       });
+      // Wait for approximately 6 seconds for 3 block confirmations
+      await new Promise((resolve) => setTimeout(resolve, 6000));
       console.log("1st Transaction submitted:", tx1);
       const tx2 = await writeContractAsync({
         abi: factoryabi,
