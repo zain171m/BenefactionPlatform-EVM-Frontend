@@ -89,18 +89,28 @@ const Home = () => {
                   {new Date(Number(vault.deadline) * 1000).toLocaleString()}
                 </h1>
               </div>
-              <button
-                className="min-w-full py-2  bg-slate-100 text-black hover:bg-purple-600 hover:text-white  rounded-md"
-                onClick={() => handleNavigate(vault.vaultAddress)}
-              >
-                View Details
-              </button>
+              <div className="">
+                {/* <button
+                  className="min-w-full py-2 bg-slate-100 text-black  hover:text-white  rounded-md hover:border-2  hover:border-purple-600 hover:bg-slate-950"
+                  onClick={() => handleNavigate(vault.vaultAddress)}
+                >
+                  View Details
+                </button> */}
+                <button
+                  onClick={() => handleNavigate(vault.vaultAddress)}
+                  className="min-w-full flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600"
+                >
+                  <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+                  <span className="text-white">View Details</span>
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
       <a href="" target="_blank" rel="noopener noreferrer">
-        <div className="flex flex-auto align-center justify-center">
+        <div className="flex flex-auto align-center justify-center ">
           <button className=" text-white font-semibold rounded-md py-2 px-5 bg-purple-600 hover:bg-purple-700 ">
             More Projects
           </button>

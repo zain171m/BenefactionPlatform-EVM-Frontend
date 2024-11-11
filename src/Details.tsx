@@ -28,8 +28,8 @@ const Details = () => {
         {/* Stat Cards Section */}
         {vaultDetails && (
           <div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
+              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 hover:shadow-purple-600">
                 <div className="flex items-center space-x-3">
                   <div className="text-blue-500 text-2xl">
                     {/* Icon placeholder */}
