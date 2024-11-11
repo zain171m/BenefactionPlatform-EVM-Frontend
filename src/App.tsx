@@ -22,7 +22,7 @@ import Home from "./Home";
 import Create from "./Create";
 import Details from "./Details";
 
-const config = getDefaultConfig({
+export const config = getDefaultConfig({
   appName: "My RainbowKit App",
   projectId: "YOUR_PROJECT_ID",
   chains: [
@@ -59,7 +59,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
-                <Route path="/details" element={<Details />} />
+                <Route path="/details/:address" element={<Details />} />
               </Routes>
             </Router>
           </div>

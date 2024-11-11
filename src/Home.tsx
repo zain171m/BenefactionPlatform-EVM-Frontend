@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { VaultArrayType } from "./ContractResponseTypes.ts";
 import factoryabi from "./abi/factoryabi.json";
 import { useReadContract } from "wagmi";
-//import abi from "./abi/abi.json";
 import { arbitrumSepolia } from "viem/chains";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [totalVaults, setTotalVaults] = useState<number>();
   const [start, setStart] = useState<number>();
   const [end, setEnd] = useState<number>();
+  const navigate = useNavigate();
 
   // First contract call
   const response = useReadContract({
@@ -41,6 +42,11 @@ const Home = () => {
   });
 
   const vaults = result?.data as VaultArrayType;
+
+  const handleNavigate = (address: string) => {
+    // Navigate to the details page with the vault address as a URL parameter
+    navigate(`/details/${address}`);
+  };
 
   return (
     <div id="projects" className="px-4 xl:px-28 lg:px-20 sm:px-8">
@@ -83,7 +89,10 @@ const Home = () => {
                   {new Date(Number(vault.deadline) * 1000).toLocaleString()}
                 </h1>
               </div>
-              <button className="min-w-full py-2  bg-slate-100 text-black hover:bg-purple-600 hover:text-white  rounded-md">
+              <button
+                className="min-w-full py-2  bg-slate-100 text-black hover:bg-purple-600 hover:text-white  rounded-md"
+                onClick={() => handleNavigate(vault.vaultAddress)}
+              >
                 View Details
               </button>
             </div>

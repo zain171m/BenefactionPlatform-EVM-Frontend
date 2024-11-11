@@ -6,3 +6,15 @@ export interface Vault {
 }
 
 export type VaultArrayType = Vault[];
+
+export interface VaultDetailsType {
+  withdrawlAddress: string;
+  participationToken: string;
+  participationTokenAmount: string;
+  minFundingAmount: string;
+  timeStamp: string;
+  exchangeRate: string;
+  projectURL: string;
+  projectTitle: string;
+  projectDescription: string;
+}
