@@ -26,10 +26,93 @@ const Details = () => {
       <h1 className="text-2xl font-bold text-white">Vault Details</h1>
       <div className="space-y-6 ">
         {/* Stat Cards Section */}
+        {!vaultDetails && (
+          <div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
+              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
+                <div className="flex items-center space-x-3">
+                  <div className="text-blue-500 text-2xl">
+                    {/* Icon placeholder */}
+                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                    🏴󠁩󠁤󠁳󠁬󠁿
+                  </div>
+                  <div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              <div className=" bg-slate-900 rounded-lg p-6 shadow-md border border-slate-950">
+                <div className="flex items-center space-x-3">
+                  <div className="text-green-500 text-2xl">
+                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                    🥮
+                  </div>
+                  <div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                <div className="flex items-center space-x-3">
+                  <div className="text-purple-500 text-2xl">
+                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                    💰
+                  </div>
+                  <div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28"></div>
+                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36"></div>
+                  </div>
+                </div>
+              </div>
+              <div className=" rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                <div className="flex items-center space-x-3">
+                  <div className="text-red-500 text-2xl">
+                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                    📅
+                  </div>
+                  <div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Detailed Cards Section */}
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 p-3 rounded-full text-2xl">
+                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+                ✌ */}
+                    👨🏻‍💼
+                  </div>
+                  <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                </div>
+                <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                <div className="bg-slate-950 text-xs font-mono p-2 rounded break-all animate-pulse"></div>
+              </div>
+
+              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 p-3 rounded-full text-2xl">
+                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+                ✌ */}
+                    📝
+                  </div>
+                  <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                </div>
+                <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+        )}
         {vaultDetails && (
           <div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 hover:shadow-purple-600">
+              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
                 <div className="flex items-center space-x-3">
                   <div className="text-blue-500 text-2xl">
                     {/* Icon placeholder */}

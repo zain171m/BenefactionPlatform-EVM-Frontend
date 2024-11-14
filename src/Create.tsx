@@ -1,5 +1,5 @@
 //import abi from "./abi/abi.json";
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { useWriteContract } from "wagmi";
 //import { parseEther } from "viem";
 import { useForm, SubmitHandler } from "react-hook-form";
 import factoryabi from "./abi/factoryabi.json";
@@ -25,7 +25,6 @@ const Create = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -69,71 +68,18 @@ const Create = () => {
     } catch (error) {
       console.error("Transaction failed:", error);
     }
-    //  try {
-    //   const tx = await writeAsync();
-    //   console.log('Transaction submitted:', tx.hash);
-    //   const receipt = await tx.wait();
-    //   console.log('Transaction confirmed:', receipt);
-    // } catch (error) {
-    //   console.error('Transaction failed:', error);
-    // }
   };
-  //console.log(watch("title")); // watch input value by passing the name of it
+  if (errors) {
+    console.log(errors);
+  }
 
   return (
     <div className="mx-auto max-w-7xl p-5">
       <div className="py-3 flex flex-col gap-2">
         <h1 className="text-2xl text-white">Create new Funding Vault</h1>
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        //   onSubmit={async (e) => {
-        //   e.preventDefault();
-        //   const formObj = new FormData(e.currentTarget);
-        //   console.log(formObj.get("name")?.toString());
-        //   console.log(formObj.get("title")?.toString());
-        //   console.log(formObj.get("description")?.toString());
-        //   console.log(
-        //     new Date(formObj.get("deadline")?.toString() ?? "0").getTime()
-        //   );
-        //   console.log(parseEther(formObj.get("target")?.toString() ?? "0"));
-        //   console.log(formObj.get("image")?.toString());
-        //   await writeContractAsync({
-        //     abi,
-        //     address: "0xC6E864c9816FfD3fcc1C501ECCFB3c83EbD62be1",
-        //     functionName: "requestCampaign",
-        //     args: [
-        //       formObj.get("name")?.toString(),
-        //       formObj.get("title")?.toString(),
-        //       formObj.get("description")?.toString(),
-        //       new Date(formObj.get("deadline")?.toString() ?? "0").getTime(),
-        //       parseEther(formObj.get("target")?.toString() ?? "0"),
-        //       formObj.get("image")?.toString(),
-        //     ],
-        //   });
-        // }}
-        //  form.name, //owner name
-        // form.title, // title
-        // form.description, // description
-        // new Date(form.deadline).getTime(), // deadline,
-        // form.target,
-        // form.image,
-        className="text-white"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="text-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-5">
-          {/* <Input
-            label={"Name"}
-            register={register}
-            errors={errors}
-            name="name"
-            validation={{
-              minLength: {
-                value: 3,
-                message: "Please enter at least 3 characters",
-              },
-            }}
-          /> */}
-
           <div>
             <label className={`text-sm text-slate-400`}>Project Name</label>
             <input
