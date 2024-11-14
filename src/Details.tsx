@@ -22,193 +22,215 @@ const Details = () => {
   //const vaultDetails = response?.data as VaultDetailsType;
 
   return (
-    <div className="space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
-      <h1 className="text-2xl font-bold text-white">Vault Details</h1>
-      <div className="space-y-6 ">
-        {/* Stat Cards Section */}
-        {!vaultDetails && (
-          <div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
-                <div className="flex items-center space-x-3">
-                  <div className="text-blue-500 text-2xl">
-                    {/* Icon placeholder */}
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    🏴󠁩󠁤󠁳󠁬󠁿
+    <div>
+      <div className="space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
+        <h1 className="text-2xl font-bold text-white">Vault Details</h1>
+        <div className="space-y-6 ">
+          {/* Stat Cards Section */}
+          {!vaultDetails && (
+            <div>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
+                <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-blue-500 text-2xl">
+                      {/* Icon placeholder */}
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      🏴󠁩󠁤󠁳󠁬󠁿
+                    </div>
+                    <div>
+                      <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                      <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
-                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                </div>
+                <div className=" bg-slate-900 rounded-lg p-6 shadow-md border border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-green-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      🥮
+                    </div>
+                    <div>
+                      <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                      <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-purple-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      💰
+                    </div>
+                    <div>
+                      <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28"></div>
+                      <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className=" rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-red-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      📅
+                    </div>
+                    <div>
+                      <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                      <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className=" bg-slate-900 rounded-lg p-6 shadow-md border border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-green-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    🥮
-                  </div>
-                  <div>
-                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
-                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-purple-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    💰
-                  </div>
-                  <div>
-                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28"></div>
-                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36"></div>
-                  </div>
-                </div>
-              </div>
-              <div className=" rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-red-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    📅
-                  </div>
-                  <div>
-                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
-                    <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* Detailed Cards Section */}
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
-                <div className="flex items-center mb-4">
-                  <div className="mr-4 p-3 rounded-full text-2xl">
-                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+              {/* Detailed Cards Section */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 p-3 rounded-full text-2xl">
+                      {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
                 ✌ */}
-                    👨🏻‍💼
+                      👨🏻‍💼
+                    </div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
                   </div>
-                  <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
+                  <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
+                  <div className="bg-slate-950 text-xs font-mono p-2 rounded break-all animate-pulse"></div>
                 </div>
-                <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
-                <div className="bg-slate-950 text-xs font-mono p-2 rounded break-all animate-pulse"></div>
-              </div>
 
-              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
-                <div className="flex items-center mb-4">
-                  <div className="mr-4 p-3 rounded-full text-2xl">
-                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+                <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 p-3 rounded-full text-2xl">
+                      {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
                 ✌ */}
-                    📝
+                      📝
+                    </div>
+                    <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
                   </div>
-                  <div className="h-6 bg-slate-800 rounded my-2 mx-2 w-28 animate-pulse"></div>
-                </div>
-                <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        )}
-        {vaultDetails && (
-          <div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
-                <div className="flex items-center space-x-3">
-                  <div className="text-blue-500 text-2xl">
-                    {/* Icon placeholder */}
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    🏴󠁩󠁤󠁳󠁬󠁿
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Project Title</h3>
-                    <p className="text-slate-400">
-                      {vaultDetails?.projectTitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className=" bg-slate-900 rounded-lg p-6 shadow-md border border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-green-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    🥮
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Available Funds</h3>
-                    <p className="text-slate-400">
-                      {formatEther(
-                        BigInt(vaultDetails.participationTokenAmount),
-                      )}{" "}
-                      Tokens
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-purple-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    💰
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Funds Collected</h3>
-                    <p className="text-slate-400">
-                      {formatEther(BigInt(vaultDetails.minFundingAmount))} Eth
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className=" rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
-                <div className="flex items-center space-x-3">
-                  <div className="text-red-500 text-2xl">
-                    {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
-                    📅
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">Tally Date</h3>
-                    <p className="text-slate-400">
-                      {new Date(
-                        Number(vaultDetails.timeStamp) * 1000,
-                      ).toLocaleString()}
-                    </p>
-                  </div>
+                  <div className="h-4 bg-slate-800 rounded my-2 mx-2 w-36 animate-pulse"></div>
                 </div>
               </div>
             </div>
-
-            {/* Detailed Cards Section */}
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
-                <div className="flex items-center mb-4">
-                  <div className="mr-4 p-3 rounded-full text-2xl">
-                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
-                  ✌ */}
-                    👨🏻‍💼
+          )}
+          {vaultDetails && (
+            <div>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-5">
+                <div className="rounded-lg p-6 shadow-md border bg-slate-900  border-slate-950 ">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-blue-500 text-2xl">
+                      {/* Icon placeholder */}
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      🏴󠁩󠁤󠁳󠁬󠁿
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Project Title</h3>
+                      <p className="text-slate-400">
+                        {vaultDetails?.projectTitle}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold">Creator</h3>
                 </div>
-                <p className="text-sm text-gray-500 mb-2">Wallet Address:</p>
-                <div className="bg-slate-950 text-xs font-mono p-2 rounded break-all">
-                  {vaultDetails.withdrawlAddress}
+                <div className=" bg-slate-900 rounded-lg p-6 shadow-md border border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-green-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      🥮
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Available Funds</h3>
+                      <p className="text-slate-400">
+                        {formatEther(
+                          BigInt(vaultDetails.participationTokenAmount),
+                        )}{" "}
+                        Tokens
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-purple-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      💰
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Funds Collected</h3>
+                      <p className="text-slate-400">
+                        {formatEther(BigInt(vaultDetails.minFundingAmount))} Eth
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className=" rounded-lg p-6 shadow-md border bg-slate-900 border-slate-950">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-red-500 text-2xl">
+                      {/* <svg className="w-6 h-6" fill="currentColor"><!-- icon --></svg> */}
+                      📅
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">Tally Date</h3>
+                      <p className="text-slate-400">
+                        {new Date(
+                          Number(vaultDetails.timeStamp) * 1000,
+                        ).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
-                <div className="flex items-center mb-4">
-                  <div className="mr-4 p-3 rounded-full text-2xl">
-                    {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+              {/* Detailed Cards Section */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 p-3 rounded-full text-2xl">
+                      {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
                   ✌ */}
-                    📝
+                      👨🏻‍💼
+                    </div>
+                    <h3 className="text-lg font-semibold">Creator</h3>
                   </div>
-                  <h3 className="text-lg font-semibold">Description</h3>
+                  <p className="text-sm text-gray-500 mb-2">Wallet Address:</p>
+                  <div className="bg-slate-950 text-xs font-mono p-2 rounded break-all">
+                    {vaultDetails.withdrawlAddress}
+                  </div>
                 </div>
-                <p className="text-sm text-slate-400">
-                  {vaultDetails.projectDescription}
-                </p>
+
+                <div className=" rounded-lg shadow-md border p-6 bg-slate-900 border-slate-950">
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 p-3 rounded-full text-2xl">
+                      {/* <svg className="w-6 h-6 text-gray-600"><!-- icon --></svg>
+                  ✌ */}
+                      📝
+                    </div>
+                    <h3 className="text-lg font-semibold">Description</h3>
+                  </div>
+                  <p className="text-sm text-slate-400">
+                    {vaultDetails.projectDescription}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+      </div>
+      <div className="space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
+        <h1 className="text-2xl font-bold text-white">Vault Actions</h1>
+        <div className="flex flex-row gap-2">
+          <button className="flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
+            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+            <span className="text-white">Refund Tokens</span>
+          </button>
+          <button className=" flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
+            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+            <span className="text-white">Withdraw funds</span>
+          </button>
+          <button className=" flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
+            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+            <span className="text-white">Add Token</span>
+          </button>
+        </div>
       </div>
     </div>
   );
