@@ -7,7 +7,6 @@ import { formatEther } from "viem";
 const Details = () => {
   // Placeholder example values for the funding vault
   const { address } = useParams<{ address: `0x${string}` }>();
-  console.log(address);
 
   const response = useReadContract({
     abi: vaultabi,
@@ -20,6 +19,8 @@ const Details = () => {
     vaultDetails = response?.data as VaultDetailsType;
   }
   //const vaultDetails = response?.data as VaultDetailsType;
+
+  const handleClick = () => {};
 
   return (
     <div>
@@ -121,8 +122,8 @@ const Details = () => {
                       🏴󠁩󠁤󠁳󠁬󠁿
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Project Title</h3>
-                      <p className="text-slate-400">
+                      <h3 className="text-slate-400">Project Title</h3>
+                      <p className=" text-lg font-semibold">
                         {vaultDetails?.projectTitle}
                       </p>
                     </div>
@@ -135,8 +136,8 @@ const Details = () => {
                       🥮
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Available Funds</h3>
-                      <p className="text-slate-400">
+                      <h3 className="text-slate-400">Available Funds</h3>
+                      <p className="text-lg font-semibold">
                         {formatEther(
                           BigInt(vaultDetails.participationTokenAmount),
                         )}{" "}
@@ -152,8 +153,8 @@ const Details = () => {
                       💰
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Funds Collected</h3>
-                      <p className="text-slate-400">
+                      <h3 className="text-slate-400">Funds Collected</h3>
+                      <p className="text-lg font-semibold">
                         {formatEther(BigInt(vaultDetails.minFundingAmount))} Eth
                       </p>
                     </div>
@@ -166,8 +167,8 @@ const Details = () => {
                       📅
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">Tally Date</h3>
-                      <p className="text-slate-400">
+                      <h3 className="text-slate-400">Tally Date</h3>
+                      <p className="text-lg font-semibold">
                         {new Date(
                           Number(vaultDetails.timeStamp) * 1000,
                         ).toLocaleString()}
@@ -212,24 +213,108 @@ const Details = () => {
           )}
         </div>
       </div>
-      <div className="space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
+      <div className=" mb-5 space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
         <h1 className="text-2xl font-bold text-white">Vault Actions</h1>
-        <div className="flex flex-row gap-2">
-          <button className="flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
-            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
-
-            <span className="text-white">Refund Tokens</span>
+        <div className="flex flex-row flex-wrap gap-2">
+          <div className="w-80 hidden md:block">
+            <label className="mb-2 text-sm font-medium sr-only bg-slate-950 text-white">
+              Fund
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-slate-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="search"
+                className="block w-full p-2 ps-10  border-2 rounded bg-slate-900 border-purple-600/70 placeholder-slate-400 text-white hover:border-purple-600 hover:shadow-sm hover:shadow-white"
+                placeholder="Fund the project"
+                required
+              />
+            </div>
+          </div>
+          <button className="w-80 border-purple-600/70 border-2 rounded text-slate-400 hover:text-white  hover:border-purple-600 hover:shadow-sm hover:shadow-white">
+            Refund
           </button>
-          <button className=" flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
-            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
-
-            <span className="text-white">Withdraw funds</span>
+          <button className="w-80 border-purple-600/70 border-2 rounded text-slate-400 hover:text-white  hover:border-purple-600 hover:shadow-sm hover:shadow-white">
+            Withdraw Funds
           </button>
-          <button className=" flex overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/50 hover:border-purple-600">
-            <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
-
-            <span className="text-white">Add Token</span>
-          </button>
+          <div className="w-80 hidden md:block">
+            <label className="mb-2 text-sm font-medium sr-only bg-slate-950 text-white">
+              Withdraw CAT
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-slate-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="search"
+                className="block w-full p-2 ps-10  border-2 rounded bg-slate-900 border-purple-600/70 placeholder-slate-400 text-white hover:border-purple-600 hover:shadow-sm hover:shadow-white"
+                placeholder="Withdraw CAT"
+                required
+              />
+            </div>
+          </div>
+          <div className="w-80 hidden md:block">
+            <label className="mb-2 text-sm font-medium sr-only bg-slate-950 text-white">
+              Add CAT
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-slate-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="search"
+                className="block w-full p-2 ps-10  border-2 rounded bg-slate-900 border-purple-600/70 placeholder-slate-400 text-white hover:border-purple-600 hover:shadow-sm hover:shadow-white"
+                placeholder="Add CAT"
+                required
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
