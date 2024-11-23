@@ -1,12 +1,21 @@
 import vaultabi from "./abi/vaultabi.json";
-import { useReadContract } from "wagmi";
+import { useReadContract, useWriteContract } from "wagmi";
 import { arbitrumSepolia } from "viem/chains";
 import { useParams } from "react-router-dom";
 import { VaultDetailsType } from "./ContractResponseTypes.ts";
-import { formatEther } from "viem";
+import { formatEther, parseEther } from "viem";
+import { useState } from "react";
+import { useAccount } from "wagmi";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  ethAmount: string;
+};
+
 const Details = () => {
   // Placeholder example values for the funding vault
   const { address } = useParams<{ address: `0x${string}` }>();
+  const { writeContractAsync } = useWriteContract();
 
   const response = useReadContract({
     abi: vaultabi,
@@ -19,8 +28,33 @@ const Details = () => {
     vaultDetails = response?.data as VaultDetailsType;
   }
   //const vaultDetails = response?.data as VaultDetailsType;
+  const [activeTab, setActiveTab] = useState("Fund Project");
 
-  const handleClick = () => {};
+  const tabs = ["Fund Project", "Refund", "Withdraw Funds", "Add CAT"];
+  const account = useAccount();
+  const nativecurrency = account.chain?.nativeCurrency.name;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<Inputs>();
+  const onSubmitForm1: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const tx1 = await writeContractAsync({
+        abi: vaultabi,
+        address: address as `0x${string}`,
+        functionName: "purchaseTokens",
+        value: parseEther(data.ethAmount),
+        chainId: arbitrumSepolia.id,
+      });
+      // Wait for approximately 6 seconds for 3 block confirmations
+      await new Promise((resolve) => setTimeout(resolve, 6000));
+      console.log("1st Transaction submitted:", tx1);
+    } catch (error) {
+      console.error("Transaction failed:", error);
+    }
+  };
 
   return (
     <div>
@@ -227,7 +261,7 @@ const Details = () => {
         </div>
       </div>
       <div className=" mb-5 space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
-        <h1 className="text-2xl font-bold text-white">Vault Actions</h1>
+        {/* <h1 className="text-2xl font-bold text-white">Vault Actions</h1>
         <div className="flex flex-row flex-wrap gap-2">
           <div className="w-80 hidden md:block">
             <label className="mb-2 text-sm font-medium sr-only bg-slate-950 text-white">
@@ -327,6 +361,104 @@ const Details = () => {
                 required
               />
             </div>
+          </div>
+        </div> */}
+        <div>
+          <h1 className="text-2xl font-bold text-white">Vault Actions</h1>
+          <div className="flex space-x-4 border-b pt-5">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`px-4 py-2 ${
+                  activeTab === tab
+                    ? "border-t border-purple-400 text-purple-400"
+                    : "text-white"
+                }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="mt-4">
+            {activeTab === "Fund Project" && (
+              <form onSubmit={handleSubmit(onSubmitForm1)}>
+                <p className="pb-5">
+                  Fund the project and receive Participation tokens
+                </p>
+                <input
+                  className="input h-[34px]  text-[14px] text-white/60 w-1/3 bg-slate-950 text-[#f4f4f5] px-3 py-2 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-[#09090b] transition-all duration-150 ease-in-out"
+                  type="number"
+                  step="any"
+                  {...register("ethAmount", { required: true })}
+                  placeholder={
+                    nativecurrency
+                      ? `Enter Amount to donate in ${nativecurrency}`
+                      : "Connect Wallet to proceed"
+                  }
+                  disabled={!nativecurrency}
+                />
+                <button className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3">
+                  <span className="absolute right-0 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+                  <span className="text-white">
+                    {isSubmitting ? "Processing..." : `Send ${nativecurrency}`}
+                  </span>
+                </button>
+              </form>
+            )}
+            {activeTab === "Refund" && (
+              <p>
+                <div>
+                  <p className="">
+                    Skeptical about project Ligitimacy? Refund Your donations
+                  </p>
+                  <button className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3">
+                    <span className="absolute right-0 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+                    <span className="text-white">
+                      {isSubmitting ? "Processing..." : `Withdraw Funds`}
+                    </span>
+                  </button>
+                </div>
+              </p>
+            )}
+            {activeTab === "Withdraw Funds" && (
+              <div>
+                <p className="">Withdraw Funds</p>
+                <button className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3">
+                  <span className="absolute right-0 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+                  <span className="text-white">
+                    {isSubmitting ? "Processing..." : `Withdraw Funds`}
+                  </span>
+                </button>
+              </div>
+            )}
+            {activeTab === "Add CAT" && (
+              <form onSubmit={handleSubmit(onSubmitForm1)}>
+                <p className="pb-5">Add more Contribution Accounting Tokens</p>
+                <input
+                  className="input h-[34px]  text-[14px] text-white/60 w-1/3 bg-slate-950 text-[#f4f4f5] px-3 py-2 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-[#09090b] transition-all duration-150 ease-in-out"
+                  type="number"
+                  step="any"
+                  {...register("ethAmount", { required: true })}
+                  placeholder={
+                    nativecurrency
+                      ? `Enter Amount of Tokens to add`
+                      : "Connect Wallet to proceed"
+                  }
+                  disabled={!nativecurrency}
+                />
+                <button className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3">
+                  <span className="absolute right-0 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+                  <span className="text-white">
+                    {isSubmitting ? "Processing..." : `Send CATs`}
+                  </span>
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
