@@ -110,6 +110,38 @@ const Details = () => {
     }
   };
 
+  const handleWithdraw = async () => {
+    try {
+      const tx1 = await writeContractAsync({
+        abi: vaultabi,
+        address: address as `0x${string}`,
+        functionName: "withdrawFunds",
+        chainId: arbitrumSepolia.id,
+      });
+      // Wait for approximately 6 seconds for 3 block confirmations
+      await new Promise((resolve) => setTimeout(resolve, 6000));
+      console.log("1st Transaction submitted:", tx1);
+    } catch (error) {
+      console.error("Contract call failed:", error);
+    }
+  };
+
+  const handleRefund = async () => {
+    try {
+      const tx1 = await writeContractAsync({
+        abi: vaultabi,
+        address: address as `0x${string}`,
+        functionName: "refundTokens",
+        chainId: arbitrumSepolia.id,
+      });
+      // Wait for approximately 6 seconds for 3 block confirmations
+      await new Promise((resolve) => setTimeout(resolve, 6000));
+      console.log("1st Transaction submitted:", tx1);
+    } catch (error) {
+      console.error("Contract call failed:", error);
+    }
+  };
+
   return (
     <div>
       <div className="space-y-6 bg-slate-900 px-10 py-10 rounded-md border mx-16 my-5 border-slate-950 text-white">
@@ -224,7 +256,7 @@ const Details = () => {
                       🥮
                     </div>
                     <div>
-                      <h3 className="text-slate-400">Available Funds</h3>
+                      <h3 className="text-slate-400">Available CATs</h3>
                       <p className="text-lg font-semibold">
                         {formatEther(
                           BigInt(vaultDetails.participationTokenAmount),
@@ -241,7 +273,7 @@ const Details = () => {
                       💰
                     </div>
                     <div>
-                      <h3 className="text-slate-400">Funds Collected</h3>
+                      <h3 className="text-slate-400">Minimum Funding Goal</h3>
                       <p className="text-lg font-semibold">
                         {formatEther(BigInt(vaultDetails.minFundingAmount))} Eth
                       </p>
@@ -473,6 +505,7 @@ const Details = () => {
                     Skeptical about project Ligitimacy? Refund Your donations
                   </p>
                   <button
+                    onClick={handleRefund}
                     disabled={!nativecurrency}
                     className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3"
                   >
@@ -490,7 +523,10 @@ const Details = () => {
             {activeTab === "Withdraw Funds" && (
               <div>
                 <p className="">Withdraw Funds</p>
-                <button className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3">
+                <button
+                  onClick={handleWithdraw}
+                  className="flex h-[34px] min-w-60 overflow-hidden items-center font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-4 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600 mt-3"
+                >
                   <span className="absolute right-0 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
 
                   <span className="text-white">
