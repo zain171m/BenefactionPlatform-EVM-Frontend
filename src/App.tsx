@@ -62,6 +62,14 @@ export default function App() {
                 <Route path="/details/:address" element={<Details />} />
               </Routes>
             </Router>
+            <footer className="text-white text-center py-4 pt-20 mt-auto">
+              <div className="container mx-auto">
+                <p className="text-sm">
+                  &copy; {new Date().getFullYear()} Stability Nexus. All rights
+                  reserved.
+                </p>
+              </div>
+            </footer>
           </div>
         </RainbowKitProvider>
       </QueryClientProvider>
