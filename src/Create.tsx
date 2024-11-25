@@ -78,6 +78,7 @@ const Create = () => {
       <div className="py-3 flex flex-col gap-2">
         <h1 className="text-2xl text-white">Create new Funding Vault</h1>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className="text-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-5">
           <div>
@@ -293,12 +294,17 @@ const Create = () => {
             />
           </div>
         </div>
+
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-white bg-slate-800 font-bold text-base h-10 hover:bg-purple-800 px-3 rounded-lg shadow-md"
+          className="h-10 text-base font-bold flex overflow-hidden items-center  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-slate-950 text-white shadow hover:bg-black/90 px-2 py-2 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out  border-2 border-purple-600/70 hover:border-purple-600"
         >
-          Create Campaing
+          <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-20 transition-all duration-1000 ease-out group-hover:-translate-x-40"></span>
+
+          <span className="text-white">
+            {isSubmitting ? "Processing..." : `Create Vault`}
+          </span>
         </button>
       </form>
     </div>
