@@ -27,6 +27,8 @@ const Details = () => {
   if (response.isFetched) {
     vaultDetails = response?.data as VaultDetailsType;
   }
+
+  
   //const vaultDetails = response?.data as VaultDetailsType;
   const [activeTab, setActiveTab] = useState("Fund Project");
 
