@@ -33,7 +33,8 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Set remote URL
+        run: git remote set-url origin https://github.com/StabilityNexus/Bene-FundRaising-EVM-Frontend
+
       - name: Deploy
-        run:
-          git remote set-url origin https://github.com/StabilityNexus/Bene-FundRaising-EVM-Frontend
-          npm run deploy
+        run: npm run deploy
