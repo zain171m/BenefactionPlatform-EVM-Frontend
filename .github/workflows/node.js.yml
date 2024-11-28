@@ -34,7 +34,6 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        run: git remote set-url origin https://github.com/${repository}
+        run:
+          git remote set-url origin https://github.com/StabilityNexus/Bene-FundRaising-EVM-Frontend
           npm run deploy
-        env:
-          repository: ${{ github.repository }}
