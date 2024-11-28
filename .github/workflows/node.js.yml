@@ -33,6 +33,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Set up Git user
+        run: |
+          git config --global user.email "zain171m@gmail.com"
+          git config --global user.name "zain171m"
+
       - name: Set remote URL
         run: git remote set-url origin https://github.com/StabilityNexus/Bene-FundRaising-EVM-Frontend
 
