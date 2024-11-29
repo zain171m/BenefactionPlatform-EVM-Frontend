@@ -54,8 +54,8 @@ const Navbar = () => {
               ></path>
             </g>
           </svg>
-          <span className=" text-3xl px-1  font-bold text-white">
-            Benefaction
+          <span className=" text-2xl px-1  font-bold text-white">
+            Bene: Fundraising Platform
           </span>
         </button>
         <div className="w-80 hidden md:block">
